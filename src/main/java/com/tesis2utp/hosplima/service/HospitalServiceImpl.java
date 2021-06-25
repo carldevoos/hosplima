@@ -7,6 +7,7 @@ import com.tesis2utp.hosplima.repository.HospitalRepository;
 import com.tesis2utp.hosplima.service.impl.HospitalService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class HospitalServiceImpl implements HospitalService {
     public List<HospitalMapa> getAllHospitalMapa() {
 
         List<HospitalMapa> hospitalBasicList = new ArrayList<>();
-        List<Hospital> hospitalList = hospitalRepository.findAll();
+        List<Hospital> hospitalList = hospitalRepository.findAllWithLimit(PageRequest.of(0,500));
 
         if (!hospitalList.isEmpty()) {
             hospitalBasicList = hospitalList
