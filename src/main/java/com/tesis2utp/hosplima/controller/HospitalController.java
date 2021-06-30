@@ -19,7 +19,13 @@ public class HospitalController {
 
     @GetMapping("/hospitalMapa")
     public ResponseEntity<List<HospitalMapa>> getAllHospitalMapa() {
-        return ResponseEntity.ok().body(this.hospitalService.getAllHospitalMapa());
+        Integer page = 500;
+        return ResponseEntity.ok().body(this.hospitalService.getAllHospitalMapa(page));
+    }
+
+    @GetMapping("/hospitalMapa/{page}")
+    public ResponseEntity<List<HospitalMapa>> getAllHospitalMapaLimit(@PathVariable Integer page) {
+        return ResponseEntity.ok().body(this.hospitalService.getAllHospitalMapa(page));
     }
 
     @GetMapping("/hospital/{ipress}")

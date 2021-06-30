@@ -25,18 +25,21 @@ public class HospitalServiceImpl implements HospitalService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<HospitalMapa> getAllHospitalMapa() {
+    public List<HospitalMapa> getAllHospitalMapa(Integer page) {
 
         List<HospitalMapa> hospitalBasicList = new ArrayList<>();
-        List<Hospital> hospitalList = hospitalRepository.findAllWithLimit(PageRequest.of(0,500));
+        try {
+            List<Hospital> hospitalList = hospitalRepository.findAllWithLimit(PageRequest.of(0, page));
+            if (!hospitalList.isEmpty()) {
+                hospitalBasicList = hospitalList
+                        .stream()
+                        .map(hospital -> modelMapper.map(hospital, HospitalMapa.class))
+                        .collect(Collectors.toList());
+            }
 
-        if (!hospitalList.isEmpty()) {
-            hospitalBasicList = hospitalList
-                    .stream()
-                    .map(hospital -> modelMapper.map(hospital, HospitalMapa.class))
-                    .collect(Collectors.toList());
+        } catch (IllegalArgumentException e) {
+            return hospitalBasicList;
         }
-
         return hospitalBasicList;
     }
 

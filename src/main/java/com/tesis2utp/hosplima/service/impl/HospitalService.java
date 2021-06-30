@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface HospitalService {
 
-    List<HospitalMapa> getAllHospitalMapa();
+    List<HospitalMapa> getAllHospitalMapa(Integer page);
 
     Hospital getHospitalByIpress(String ipress);
 }
