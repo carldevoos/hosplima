@@ -1,10 +1,10 @@
-package com.tesis2utp.hosplima.service;
+package com.tesis2utp.hosplima.service.impl;
 
 import com.tesis2utp.hosplima.dto.HospitalMapa;
 import com.tesis2utp.hosplima.exception.ResourceNotFoundException;
 import com.tesis2utp.hosplima.model.Hospital;
 import com.tesis2utp.hosplima.repository.HospitalRepository;
-import com.tesis2utp.hosplima.service.impl.HospitalService;
+import com.tesis2utp.hosplima.service.HospitalService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class HospitalServiceImpl implements HospitalService {
 
     @Autowired
-    HospitalRepository hospitalRepository;
+    private HospitalRepository hospitalRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -29,7 +29,7 @@ public class HospitalServiceImpl implements HospitalService {
 
         List<HospitalMapa> hospitalBasicList = new ArrayList<>();
         try {
-            List<Hospital> hospitalList = hospitalRepository.findAllWithLimit(PageRequest.of(0, page));
+            List<Hospital> hospitalList = this.hospitalRepository.findAllWithLimit(PageRequest.of(0, page));
             if (!hospitalList.isEmpty()) {
                 hospitalBasicList = hospitalList
                         .stream()

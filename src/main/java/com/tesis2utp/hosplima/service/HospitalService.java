@@ -1,4 +1,4 @@
-package com.tesis2utp.hosplima.service.impl;
+package com.tesis2utp.hosplima.service;
 
 import com.tesis2utp.hosplima.dto.HospitalMapa;
 import com.tesis2utp.hosplima.model.Hospital;

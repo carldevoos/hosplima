@@ -2,7 +2,7 @@ package com.tesis2utp.hosplima.controller;
 
 import com.tesis2utp.hosplima.dto.HospitalMapa;
 import com.tesis2utp.hosplima.model.Hospital;
-import com.tesis2utp.hosplima.service.impl.HospitalService;
+import com.tesis2utp.hosplima.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
