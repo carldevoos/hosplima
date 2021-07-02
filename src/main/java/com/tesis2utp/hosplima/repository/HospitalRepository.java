@@ -16,4 +16,7 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
     List<Hospital> findAllWithLimit(Pageable pageable);
 
     Optional<Hospital> findByIpress(String ipress);
+
+    @Query(value = "SELECT DISTINCT a.institucion FROM hospital a WHERE a.ubigeo = ?1", nativeQuery = true)
+    List<String> getAllInstitucionByUbigeo(String ubigeo);
 }

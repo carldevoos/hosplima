@@ -55,4 +55,12 @@ public class HospitalServiceImpl implements HospitalService {
         }
     }
 
+    @Override
+    public List<String> getAllInstitucionByUbigeo(String ubigeo) {
+
+        List<String> institucionList = this.hospitalRepository.getAllInstitucionByUbigeo(ubigeo);
+
+        return institucionList;
+    }
+
 }

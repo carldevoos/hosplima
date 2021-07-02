@@ -33,4 +33,9 @@ public class HospitalController {
         //Hospital hospital = this.hospitalService.getHospitalByIpress(ipress);
         return ResponseEntity.ok().body(this.hospitalService.getHospitalByIpress(ipress));
     }
+
+    @GetMapping("/institucion/{ubigeo}")
+    public ResponseEntity<List<String>> getAllInstitucionByUbigeo(@PathVariable String ubigeo) {
+        return ResponseEntity.ok().body(this.hospitalService.getAllInstitucionByUbigeo(ubigeo));
+    }
 }

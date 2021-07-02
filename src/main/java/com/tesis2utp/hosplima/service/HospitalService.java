@@ -10,4 +10,6 @@ public interface HospitalService {
     List<HospitalMapa> getAllHospitalMapa(Integer page);
 
     Hospital getHospitalByIpress(String ipress);
+
+    List<String> getAllInstitucionByUbigeo(String ubigeo);
 }
