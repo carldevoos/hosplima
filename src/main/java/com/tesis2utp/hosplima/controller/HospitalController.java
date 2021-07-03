@@ -30,12 +30,18 @@ public class HospitalController {
 
     @GetMapping("/hospital/{ipress}")
     public ResponseEntity<Hospital> getHospitalByIpress(@PathVariable String ipress) {
-        //Hospital hospital = this.hospitalService.getHospitalByIpress(ipress);
         return ResponseEntity.ok().body(this.hospitalService.getHospitalByIpress(ipress));
     }
 
     @GetMapping("/institucion/{ubigeo}")
     public ResponseEntity<List<String>> getAllInstitucionByUbigeo(@PathVariable String ubigeo) {
         return ResponseEntity.ok().body(this.hospitalService.getAllInstitucionByUbigeo(ubigeo));
+    }
+
+    @GetMapping("/hospital")
+    public ResponseEntity<List<Hospital>> getAllInstitucionByUbigeo(@RequestParam(required = false) String ubigeo,
+                                                                    @RequestParam(required = false) String institucion,
+                                                                    @RequestParam(required = false) String especialidad) {
+        return ResponseEntity.ok().body(this.hospitalService.getAllHospitalsByParameters(ubigeo, institucion, especialidad));
     }
 }

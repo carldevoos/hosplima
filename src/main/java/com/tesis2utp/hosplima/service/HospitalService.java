@@ -12,4 +12,6 @@ public interface HospitalService {
     Hospital getHospitalByIpress(String ipress);
 
     List<String> getAllInstitucionByUbigeo(String ubigeo);
+
+    List<Hospital> getAllHospitalsByParameters(String ubigeo, String institucion, String especialidad);
 }
