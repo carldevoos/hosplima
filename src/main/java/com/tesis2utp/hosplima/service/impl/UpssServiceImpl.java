@@ -17,7 +17,14 @@ public class UpssServiceImpl implements UpssService {
     @Override
     public List<Upss> findAllUpssByUbigeo(String ubigeo) {
 
-        List<Upss> upssList = this.upssRepository.findAllUpssByIpress(ubigeo);
+        List<Upss> upssList = this.upssRepository.findAllUpssByUbigeo(ubigeo);
+
+        return upssList;
+    }
+
+    @Override
+    public List<Upss> findAllUpssByIpress(String ipress) {
+        List<Upss> upssList = this.upssRepository.findAllUpssByIpress(ipress);
 
         return upssList;
     }

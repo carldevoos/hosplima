@@ -1,9 +1,12 @@
 package com.tesis2utp.hosplima.service.impl;
 
 import com.tesis2utp.hosplima.dto.HospitalMapa;
+import com.tesis2utp.hosplima.dto.HospitalUpss;
 import com.tesis2utp.hosplima.exception.ResourceNotFoundException;
 import com.tesis2utp.hosplima.model.Hospital;
+import com.tesis2utp.hosplima.model.Upss;
 import com.tesis2utp.hosplima.repository.HospitalRepository;
+import com.tesis2utp.hosplima.repository.UpssRepository;
 import com.tesis2utp.hosplima.service.HospitalService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,9 @@ public class HospitalServiceImpl implements HospitalService {
 
     @Autowired
     private HospitalRepository hospitalRepository;
+
+    @Autowired
+    private UpssRepository upssRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -44,12 +50,15 @@ public class HospitalServiceImpl implements HospitalService {
     }
 
     @Override
-    public Hospital getHospitalByIpress(String ipress) {
+    public HospitalUpss getHospitalByIpress(String ipress) {
 
         Optional<Hospital> hospitalOptional = this.hospitalRepository.findByIpress(ipress);
 
         if (hospitalOptional.isPresent()) {
-            return hospitalOptional.get();
+            List<Upss> upssList = this.upssRepository.findAllUpssByIpress(ipress);
+            HospitalUpss hospitalUpss = modelMapper.map(hospitalOptional.get(), HospitalUpss.class);
+            hospitalUpss.setUpssList(upssList);
+            return hospitalUpss;
         } else {
             throw new ResourceNotFoundException("Hospital no encontrado");
         }

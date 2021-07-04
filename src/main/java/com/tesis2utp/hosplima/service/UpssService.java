@@ -7,4 +7,6 @@ import java.util.List;
 public interface UpssService {
 
     List<Upss> findAllUpssByUbigeo(String ubigeo);
+
+    List<Upss> findAllUpssByIpress(String ipress);
 }

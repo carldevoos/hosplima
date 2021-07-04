@@ -1,6 +1,7 @@
 package com.tesis2utp.hosplima.controller;
 
 import com.tesis2utp.hosplima.dto.HospitalMapa;
+import com.tesis2utp.hosplima.dto.HospitalUpss;
 import com.tesis2utp.hosplima.model.Hospital;
 import com.tesis2utp.hosplima.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class HospitalController {
     }
 
     @GetMapping("/hospital/{ipress}")
-    public ResponseEntity<Hospital> getHospitalByIpress(@PathVariable String ipress) {
+    public ResponseEntity<HospitalUpss> getHospitalByIpress(@PathVariable String ipress) {
         return ResponseEntity.ok().body(this.hospitalService.getHospitalByIpress(ipress));
     }
 
@@ -39,7 +40,7 @@ public class HospitalController {
     }
 
     @GetMapping("/hospital")
-    public ResponseEntity<List<Hospital>> getAllInstitucionByUbigeo(@RequestParam(required = false) String ubigeo,
+    public ResponseEntity<List<Hospital>> getAllInstitucionByUbigeoInstitucionEspecialidad(@RequestParam(required = false) String ubigeo,
                                                                     @RequestParam(required = false) String institucion,
                                                                     @RequestParam(required = false) String especialidad) {
         return ResponseEntity.ok().body(this.hospitalService.getAllHospitalsByParameters(ubigeo, institucion, especialidad));
